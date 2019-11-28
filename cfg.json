@@ -1,0 +1,12 @@
+{
+    "Logger": {
+        "RuntimePath": "./starter-runtime",
+        "RuntimeRemainDays": 3,
+        "AccessPath": "./starter-access",
+        "AccessRemainDays": 3
+    },
+    "HTTPServer": {
+        "ListenAddr": "0.0.0.0:8080",
+        "GraceShutdownPeriod": "10s"
+    }
+}

@@ -1,0 +1,6 @@
+FROM alpine:3.10.3
+
+ARG BINARY
+RUN mkdir -p /usr/local/bin
+ADD $BINARY /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/$BINARY"]
