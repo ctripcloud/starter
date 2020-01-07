@@ -2,10 +2,11 @@ package handler
 
 import (
 	"net/http"
+	"runtime"
 
-	"github.com/gin-gonic/gin"
 	"github.com/ctripcloud/starter/pkg"
 	"github.com/ctripcloud/starter/pkg/dto"
+	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -13,7 +14,7 @@ import (
 func SelfVersion(c *gin.Context) {
 	c.JSON(http.StatusOK, dto.NewSuccessOK(dto.Version{
 		Version:   pkg.Version,
-		GoVersion: pkg.GoVersion,
+		GoVersion: runtime.Version(),
 		BuildTime: pkg.BuildTime,
 	}))
 }

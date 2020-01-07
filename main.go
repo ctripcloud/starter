@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+	"runtime"
 
 	"github.com/ctripcloud/starter/config"
 	"github.com/ctripcloud/starter/handler"
@@ -49,7 +50,7 @@ func main() {
 		return
 	}
 	if verboseVersion {
-		fmt.Printf("version: %s\ngo version: %s\nbuild time: %s\n", pkg.Version, pkg.GoVersion, pkg.BuildTime)
+		fmt.Printf("version: %s\ngo version: %s\nbuild time: %s\n", pkg.Version, runtime.Version(), pkg.BuildTime)
 		return
 	}
 	startTime.SetToCurrentTime()
