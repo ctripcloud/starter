@@ -20,6 +20,15 @@ type Logger struct {
 	AccessRemainDays  int    `validate:"required"`
 }
 
+type DB struct {
+	Driver       string `validate:"required,oneof=mysql sqlserver postgres sqlite3 oci8"`
+	DataSource   string `validate:"required"`
+	MaxIdleConns int    `validate:"min=0"`
+	MaxOpenConns int    `validate:"min=1"`
+	ShowSQL      bool
+	ShowExecTime bool
+}
+
 // HTTPServer configuration for HttpServer
 type HTTPServer struct {
 	// ListenAddr addr to listen, ":8080" for example
@@ -32,6 +41,7 @@ type HTTPServer struct {
 type Config struct {
 	Logger     Logger
 	HTTPServer HTTPServer
+	DB         DB
 }
 
 // PostDecode hook to validate new config. New config reload will be canceled if `error != nil`.
