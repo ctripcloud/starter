@@ -8,6 +8,7 @@ import (
 	"runtime"
 
 	"github.com/ctripcloud/starter/config"
+	"github.com/ctripcloud/starter/db"
 	"github.com/ctripcloud/starter/handler"
 	"github.com/ctripcloud/starter/logger"
 	"github.com/ctripcloud/starter/pkg"
@@ -66,6 +67,11 @@ func main() {
 		logger.RuntimeSugar.Fatalf("logger init failed: %v", err)
 	}
 	defer logger.Final()
+
+	if err = db.Init(); err != nil {
+		logger.RuntimeSugar.Fatalf("db init failed: %v", err)
+	}
+	defer db.Final()
 
 	srv := &http.Server{
 		Addr:    cfg.HTTPServer.ListenAddr,

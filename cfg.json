@@ -8,5 +8,13 @@
     "HTTPServer": {
         "ListenAddr": "0.0.0.0:8080",
         "GraceShutdownPeriod": "10s"
+    },
+    "DB": {
+        "Driver":"mysql",
+        "DataSource":"[username[:password]@][protocol[(address)]]/dbname[?param1=value1&...&paramN=valueN]",
+        "MaxIdleConns": 3,
+        "MaxOpenConns": 20,
+        "ShowSQL": false,
+        "ShowExecTime": false
     }
 }
