@@ -83,21 +83,11 @@ func (mws *MutableWriteSyncer) Sync() error {
 func init() {
 	runtimeSyncer = NewMutableWriteSyncer(zapcore.Lock(zapcore.AddSync(os.Stdout)))
 	runtimeCore := zapcore.NewCore(
-		zapcore.NewJSONEncoder(zapcore.EncoderConfig{
-			TimeKey:        "ts",
-			LevelKey:       "level",
-			NameKey:        "logger",
-			CallerKey:      "caller",
-			MessageKey:     "msg",
-			StacktraceKey:  "stacktrace",
-			EncodeLevel:    zapcore.LowercaseLevelEncoder,
-			EncodeTime:     zapcore.ISO8601TimeEncoder,
-			EncodeDuration: zapcore.SecondsDurationEncoder,
-		}),
+		zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig()),
 		runtimeSyncer,
 		zapcore.InfoLevel,
 	)
-	Runtime = zap.New(runtimeCore)
+	Runtime = zap.New(runtimeCore, zap.AddCaller())
 	RuntimeSugar = Runtime.Sugar()
 }
 
