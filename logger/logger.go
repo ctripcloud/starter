@@ -87,7 +87,7 @@ func init() {
 		runtimeSyncer,
 		zapcore.InfoLevel,
 	)
-	Runtime = zap.New(runtimeCore, zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel))
+	Runtime = zap.New(runtimeCore, zap.AddCaller())
 	RuntimeSugar = Runtime.Sugar()
 }
 
